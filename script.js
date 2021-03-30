@@ -6,7 +6,13 @@ snake[0] = {
     x: 8 * box,
     y: 8 * box,
 }
+
 let direction = "right";
+
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 const createBackground = () => {
     context.fillStyle = "lightgreen";
@@ -20,6 +26,10 @@ const createSnake = () => {
     }
 }
 
+const drawFood = () => {
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box);
+}
 
 const update = (event) => {
     if (event.keyCode == 37 && direction != "right") direction = "left";
@@ -39,6 +49,7 @@ const initGame = () => {
 
     createBackground();
     createSnake();
+    drawFood();
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
